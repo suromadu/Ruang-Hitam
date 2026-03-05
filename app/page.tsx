@@ -10,8 +10,7 @@ async function getFolders(page = 1) {
 
   const { html } = await res.json();
 
-  // Parse HTML with cheerio on server? Or send raw HTML to client & parse there.
-  // For simplicity, we'll parse client-side in component (keeps server light)
+  // For now we pass raw HTML to client component
   return html;
 }
 
