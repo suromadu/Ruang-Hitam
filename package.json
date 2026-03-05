@@ -1,0 +1,26 @@
+{
+  "name": "ruang-hitam-scraper",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.0.0-canary.999", // or latest stable
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0-canary.999"
+  }
+}
