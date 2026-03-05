@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.0.0-canary.999", // or latest stable
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "next": "15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "cheerio": "^1.0.0-rc.12",
-    "axios": "^1.7.0"
+    "axios": "^1.7.7"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -21,6 +21,6 @@
     "@types/react-dom": "^18",
     "typescript": "^5",
     "eslint": "^8",
-    "eslint-config-next": "15.0.0-canary.999"
+    "eslint-config-next": "15.0.0"
   }
 }
