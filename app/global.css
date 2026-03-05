@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Optional: Force dark mode via class if you want manual toggle later (add .dark to <html> via next-themes or js) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Base resets & global naughty styles */
+@layer base {
+  :root {
+    --background: theme('colors.black');
+    --foreground: theme('colors.pink.300');
+    --accent: theme('colors.pink.500');
+    --accent-hover: theme('colors.pink.400');
+    --card: theme('colors.gray.950');
+    --card-foreground: theme('colors.pink.200');
+    --muted: theme('colors.gray.900');
+    --muted-foreground: theme('colors.pink.400/80');
+    --border: theme('colors.pink.900/30');
+  }
+
+  body {
+    @apply bg-black text-pink-300 antialiased;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 30%);
+    min-height: 100vh;
+  }
+
+  /* Make links & buttons drip with pink temptation */
+  a {
+    @apply text-pink-400 hover:text-pink-300 transition-colors duration-300;
+  }
+
+  button, .btn {
+    @apply bg-pink-600 hover:bg-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-pink-500/50;
+  }
+
+  /* Scrollbar that matches the vibe — hot pink on black */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-pink-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-pink-500;
+  }
+}
+
+/* If using dark mode toggles or prefers-color-scheme — enhance the black/pink contrast */
+.dark {
+  --background: theme('colors.black');
+  --foreground: theme('colors.pink.200');
+}
+
+/* Pulse animation for that aroused, throbbing feel */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Optional gradient text for titles — pink glow on black */
+.text-gradient-pink {
+  background: linear-gradient(90deg, #ec4899, #f472b6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
