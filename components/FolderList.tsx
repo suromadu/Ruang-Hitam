@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 type Props = { initialHtml: string };
 
