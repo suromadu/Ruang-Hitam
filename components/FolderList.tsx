@@ -31,7 +31,7 @@ export default function FolderList({ initialHtml }: Props) {
   const loadNextPage = async () => {
     setLoading(true);
     const nextPage = currentPage + 1;
-    const proxyUrl = `/api/scrape?url=\( {encodeURIComponent(`https://skyli.ink/folder-list.php?page= \){nextPage}`)}`;
+    const proxyUrl = `/api/scrape?url=${encodeURIComponent(`https://skyli.ink/folder-list.php?page=${nextPage}`)}`;
 
     const res = await fetch(proxyUrl);
     if (res.ok) {
@@ -57,7 +57,7 @@ export default function FolderList({ initialHtml }: Props) {
       const $ = cheerio.load(html);
       const videoLinks: string[] = [];
 
-      \( ('a[href \)=".mp4"], a[href\( =".mkv"], a[href \)=".webm"]').each((_, el) => {
+      $('a[href$=".mp4"], a[href$=".mkv"], a[href$=".webm"]').each((_, el) => {
         let href = $(el).attr('href') || '';
         if (href && !href.startsWith('http')) {
           href = new URL(href, folderUrl).href;
@@ -77,7 +77,7 @@ export default function FolderList({ initialHtml }: Props) {
           <button
             key={f.name}
             onClick={() => loadVideos(f.url)}
-            className={`p-6 rounded-xl bg-gradient-to-br from-purple-900 to-pink-900 hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-center font-semibold ${selectedFolder === f.name ? 'ring-4 ring-pink-500' : ''}`}
+            className="p-6 rounded-xl bg-gradient-to-br from-purple-900 to-pink-900 hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg text-center font-semibold text-white"
           >
             {f.name.replace(/-/g, ' ').toUpperCase()}
           </button>
