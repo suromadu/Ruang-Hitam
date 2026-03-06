@@ -28,7 +28,7 @@ export default function FolderList({ initialHtml }: Props) {
 
       if (slug) {
         folders.push({
-          name: slug,           // untuk key & selectedFolder
+          name: slug, // untuk key & selectedFolder
           displayName: rawDisplay, // tampilan cantik di button
           url,
         });
@@ -43,7 +43,9 @@ export default function FolderList({ initialHtml }: Props) {
   const loadNextPage = async () => {
     setLoading(true);
     const nextPage = currentPage + 1;
-    const proxyUrl = `/api/scrape?url=\( {encodeURIComponent(`https://skyli.ink/folder-list.php?page= \){nextPage}`)}`;
+    const proxyUrl = `/api/scrape?url=${encodeURIComponent(
+      `https://skyli.ink/folder-list.php?page=${nextPage}`
+    )}`;
 
     try {
       const res = await fetch(proxyUrl);
@@ -78,8 +80,8 @@ export default function FolderList({ initialHtml }: Props) {
         const $ = load(html);
         const videoLinks: string[] = [];
 
-        // Cari semua <a> yang berakhir .mp4 / .mkv / .webm dll
-        \( ('a[href \)=".mp4"], a[href\( =".mkv"], a[href \)=".webm"], a[href$=".mov"]').each((_, el) => {
+        // Cari semua <a> yang berakhir .mp4 / .mkv / .webm / .mov
+        $('a[href$=".mp4"], a[href$=".mkv"], a[href$=".webm"], a[href$=".mov"]').each((_, el) => {
           let href = $(el).attr('href') || '';
           if (href) {
             // Kalau relative → jadikan absolute
@@ -92,7 +94,7 @@ export default function FolderList({ initialHtml }: Props) {
 
         // Kalau gak nemu <a>, mungkin text list — fallback regex sederhana
         if (videoLinks.length === 0) {
-          const fileRegex = /(https?:\/\/[^\s]+\.(mp4|mkv|webm|mov))/gi;
+          const fileRegex = /(https?:\/\/[^\s]+?\.(mp4|mkv|webm|mov))/gi;
           let fileMatch;
           while ((fileMatch = fileRegex.exec(html)) !== null) {
             videoLinks.push(fileMatch[0]);
@@ -167,4 +169,4 @@ export default function FolderList({ initialHtml }: Props) {
       </div>
     </div>
   );
-      }
+        }
